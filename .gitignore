@@ -1,0 +1,9 @@
+.idea/
+.DS_Store
+
+# ignore vendor/
+vendor/
+
+# SDK generator
+.openapi-generator-ignore
+.openapi-generator/VERSION
