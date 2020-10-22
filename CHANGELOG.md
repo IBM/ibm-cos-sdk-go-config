@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.0.1
+
+### Content
+
+#### Defect Fixes
+
+* COSSDK-72936: <https://github.com/IBM/ibm-cos-sdk-go-config/issues/1>
+
 ## 1.0.0
 
 ### Content
