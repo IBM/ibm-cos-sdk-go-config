@@ -7,24 +7,28 @@ Cloud Object Storage](https://cloud.ibm.com/apidocs/cos/cos-configuration).
 
 * [Core documentation for IBM COS](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started.html)
 * [REST API Reference and Code Examples](https://cloud.ibm.com/apidocs/cos/cos-configuration)
-* [Go Resource Configuration API reference documentation](https://godoc.org/github.com/IBM/ibm-cos-sdk-go-config)
+* [Go Resource Configuration API reference documentation](https://pkg.go.dev/github.com/IBM/ibm-cos-sdk-go-config)
 
 For release notes, see the [CHANGELOG][changes-file].
 
 ## Quick start
+
 You'll need:
-  * An instance of COS.
-  * An API key from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/docs/iam/users_roles.html).
-  * Minimum version of Go 1.12.
+
+* An instance of COS.
+* An API key from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/docs/iam/users_roles.html).
+* Minimum version of Go 1.12.
 
 ## Getting the SDK
 
 Get SDK package:
-```
+
+```shell
 go get -u github.com/IBM/ibm-cos-sdk-go-config/...
 ```
 
 ## Getting help
+
 Feel free to use GitHub issues for tracking bugs and feature requests, but for help please use one of the following resources:
 
 * Read a quick start guide in [IBM Cloud Docs][bluemix-docs]
