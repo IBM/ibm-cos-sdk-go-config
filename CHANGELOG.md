@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.1.0
+
+### Content
+
+#### Features
+
+* COS Request Metrics Monitoring
+
 ## 1.0.1
 
 ### Content

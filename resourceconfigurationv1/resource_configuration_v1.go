@@ -323,6 +323,9 @@ type MetricsMonitoring struct {
 	// If set to `true`, all usage metrics (i.e. `bytes_used`) will be sent to the monitoring service.
 	UsageMetricsEnabled *bool `json:"usage_metrics_enabled,omitempty"`
 
+	// If set to `true`, all request metrics (i.e. `rest.object.head`) will be sent to the monitoring service.
+	RequestMetricsEnabled *bool `json:"request_metrics_enabled,omitempty"`
+
 	// Required the first time `metrics_monitoring` is configured. The instance of IBM Cloud Monitoring that will receive
 	// the bucket metrics. The format is "crn:v1:bluemix:public:logdnaat:{bucket location}:a/{storage account}:{monitoring
 	// service instance}::".
