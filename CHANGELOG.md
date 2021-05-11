@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.2.0
+
+### Content
+
+#### Features
+
+* COS Quota
+* Object Versioning Metrics
+
 ## 1.1.0
 
 ### Content
