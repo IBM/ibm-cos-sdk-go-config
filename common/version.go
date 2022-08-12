@@ -17,4 +17,4 @@
 package common
 
 // SDKVersion : version of this SDK
-const SDKVersion = "1.2.0"
+const SDKVersion = "1.2.1"
