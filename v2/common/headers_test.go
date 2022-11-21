@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2019.
+ * (C) Copyright IBM Corp. 2019, 2020.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,15 +17,15 @@
 package common
 
 import (
+	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestGetSystemInfo(t *testing.T) {
 	var sysinfo = GetSystemInfo()
 	assert.NotNil(t, sysinfo)
+	assert.True(t, strings.Contains(sysinfo, "lang="))
 	assert.True(t, strings.Contains(sysinfo, "arch="))
 	assert.True(t, strings.Contains(sysinfo, "os="))
 	assert.True(t, strings.Contains(sysinfo, "go.version="))
@@ -36,15 +36,8 @@ func TestGetSdkHeaders(t *testing.T) {
 	assert.NotNil(t, headers)
 
 	var foundIt bool
-	_, foundIt = headers[HeaderUserAgent]
-	assert.True(t, foundIt)
 
-	_, foundIt = headers[HeaderUserAgent]
+	_, foundIt = headers[headerNameUserAgent]
 	assert.True(t, foundIt)
-}
-
-func TestUserAgent(t *testing.T) {
-	var useragent = GetUserAgentInfo()
-	assert.NotNil(t, useragent)
-	assert.True(t, strings.Contains(useragent, "ibm-cos-resource-config-sdk-go-"))
+	t.Logf("user agent: %s\n", headers[headerNameUserAgent])
 }

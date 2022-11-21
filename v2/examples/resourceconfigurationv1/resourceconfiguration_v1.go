@@ -3,19 +3,19 @@ package main
 import (
 	"fmt"
 
-	rc "github.com/IBM/ibm-cos-sdk-go-config/resourceconfigurationv1"
+	rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
 
 	"github.com/IBM/ibm-cos-sdk-go/aws"
 	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
 	"github.com/IBM/ibm-cos-sdk-go/aws/session"
 	"github.com/IBM/ibm-cos-sdk-go/service/s3"
 
-	"github.com/IBM/go-sdk-core/v3/core"
+	"github.com/IBM/go-sdk-core/v5/core"
 )
 
 // A Resource Configuration Service example
 // First, ensure the credentials are correct, and then run this script:
-//    go run -v resource_configuration_v1.go
+//    go run -v resourceconfiguration_v1.go
 
 const (
 	apiKey            = "<api_key>"
@@ -64,11 +64,14 @@ func main() {
 	}
 
 	// Update Config Options
+	patchNameMap := make(map [string]interface{})
+	patchNameMap["firewall"] = &rc.Firewall{
+		AllowedIp: []string{"192.168.1.95", "192.168.1.100"},
+	}
+
 	uOptions := &rc.UpdateBucketConfigOptions{
 		Bucket: core.StringPtr(bName),
-		Firewall: &rc.Firewall{
-			AllowedIp: []string{"192.168.1.95", "192.168.1.100"},
-		},
+		BucketPatch: patchNameMap,
 	}
 
 	// Update Bucket Config
@@ -83,14 +86,13 @@ func main() {
 	GetBucketConfigOptions := service.NewGetBucketConfigOptions(bName)
 
 	// Get Bucket Config
-	result, response, e := service.GetBucketConfig(GetBucketConfigOptions)
+	_, response, e := service.GetBucketConfig(GetBucketConfigOptions)
 	// Check successful call
 	if e != nil {
 		fmt.Println(e)
 		return
 	}
 
-	// Print response and result outputs
-	fmt.Println(result)
+	// Print response outputs
 	fmt.Println(response)
 }

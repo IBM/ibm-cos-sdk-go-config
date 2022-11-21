@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.0.0
+
+### Content
+
+#### Defect Fixes
+
+* Update dependencies
+
+#### BREAKING CHANGES
+
+* Changes in ```Go Mod, Package Import, API Patch Models and Agent Name```.
+
+For more details, refer [MIGRATION-GUIDE](MIGRATION-V1.md).
+
 ## 1.2.1
 
 ### Content

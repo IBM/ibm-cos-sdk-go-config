@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2019.
+ * (C) Copyright IBM Corp. 2019, 2020.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,5 +16,5 @@
 
 package common
 
-// SDKVersion : version of this SDK
-const SDKVersion = "1.2.1"
+// Version of the SDK
+const Version = "2.0.0"
