@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -225,7 +225,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146}`)
+					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
 				}))
 			})
 			It(`Invoke GetBucketConfig successfully with retries`, func() {
@@ -279,7 +279,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146}`)
+					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
 				}))
 			})
 			It(`Invoke GetBucketConfig successfully`, func() {
@@ -438,12 +438,18 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				metricsMonitoringModel.RequestMetricsEnabled = core.BoolPtr(false)
 				metricsMonitoringModel.MetricsMonitoringCrn = core.StringPtr("testString")
 
+				// Construct an instance of the ProtectionManagement model
+				protectionManagementModel := new(resourceconfigurationv1.ProtectionManagement)
+				protectionManagementModel.RequestedState = core.StringPtr("activate")
+				protectionManagementModel.ProtectionManagementToken = core.StringPtr("testString")
+
 				// Construct an instance of the BucketPatch model
 				bucketPatchModel := new(resourceconfigurationv1.BucketPatch)
 				bucketPatchModel.Firewall = firewallModel
 				bucketPatchModel.ActivityTracking = activityTrackingModel
 				bucketPatchModel.MetricsMonitoring = metricsMonitoringModel
 				bucketPatchModel.HardQuota = core.Int64Ptr(int64(28198745752445146))
+				bucketPatchModel.ProtectionManagement = protectionManagementModel
 				bucketPatchModelAsPatch, asPatchErr := bucketPatchModel.AsPatch()
 				Expect(asPatchErr).To(BeNil())
 
@@ -485,12 +491,18 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				metricsMonitoringModel.RequestMetricsEnabled = core.BoolPtr(false)
 				metricsMonitoringModel.MetricsMonitoringCrn = core.StringPtr("testString")
 
+				// Construct an instance of the ProtectionManagement model
+				protectionManagementModel := new(resourceconfigurationv1.ProtectionManagement)
+				protectionManagementModel.RequestedState = core.StringPtr("activate")
+				protectionManagementModel.ProtectionManagementToken = core.StringPtr("testString")
+
 				// Construct an instance of the BucketPatch model
 				bucketPatchModel := new(resourceconfigurationv1.BucketPatch)
 				bucketPatchModel.Firewall = firewallModel
 				bucketPatchModel.ActivityTracking = activityTrackingModel
 				bucketPatchModel.MetricsMonitoring = metricsMonitoringModel
 				bucketPatchModel.HardQuota = core.Int64Ptr(int64(28198745752445146))
+				bucketPatchModel.ProtectionManagement = protectionManagementModel
 				bucketPatchModelAsPatch, asPatchErr := bucketPatchModel.AsPatch()
 				Expect(asPatchErr).To(BeNil())
 

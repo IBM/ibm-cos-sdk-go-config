@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2022.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.57.1-4c556507-20220928-143422
+ * IBM OpenAPI SDK Code Generator Version: 3.84.1-55f6d880-20240110-194020
  */
 
 // Package resourceconfigurationv1 : Operations and models for the ResourceConfigurationV1 service
@@ -369,6 +369,9 @@ type Bucket struct {
 
 	// Maximum bytes for this bucket.
 	HardQuota *int64 `json:"hard_quota,omitempty"`
+
+	// Data structure holding protection management response.
+	ProtectionManagement *ProtectionManagementResponse `json:"protection_management,omitempty"`
 }
 
 // UnmarshalBucket unmarshals an instance of Bucket from the specified map of raw messages.
@@ -434,6 +437,10 @@ func UnmarshalBucket(m map[string]json.RawMessage, result interface{}) (err erro
 	if err != nil {
 		return
 	}
+	err = core.UnmarshalModel(m, "protection_management", &obj.ProtectionManagement, UnmarshalProtectionManagementResponse)
+	if err != nil {
+		return
+	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
 	return
 }
@@ -456,6 +463,9 @@ type BucketPatch struct {
 
 	// Maximum bytes for this bucket.
 	HardQuota *int64 `json:"hard_quota,omitempty"`
+
+	// Data structure holding protection management operations.
+	ProtectionManagement *ProtectionManagement `json:"protection_management,omitempty"`
 }
 
 // UnmarshalBucketPatch unmarshals an instance of BucketPatch from the specified map of raw messages.
@@ -474,6 +484,10 @@ func UnmarshalBucketPatch(m map[string]json.RawMessage, result interface{}) (err
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "hard_quota", &obj.HardQuota)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "protection_management", &obj.ProtectionManagement, UnmarshalProtectionManagement)
 	if err != nil {
 		return
 	}
@@ -568,6 +582,115 @@ func UnmarshalMetricsMonitoring(m map[string]json.RawMessage, result interface{}
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "metrics_monitoring_crn", &obj.MetricsMonitoringCrn)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// ProtectionManagement : Data structure holding protection management operations.
+type ProtectionManagement struct {
+	// If set to `activate`, protection management action on the bucket is being activated.
+	RequestedState *string `json:"requested_state,omitempty"`
+
+	// This field is required when using requested_state\:`activate` and holds a JWT that is provided by the Cloud
+	// Operator. This should be the encoded JWT.
+	ProtectionManagementToken *string `json:"protection_management_token,omitempty"`
+}
+
+// Constants associated with the ProtectionManagement.RequestedState property.
+// If set to `activate`, protection management action on the bucket is being activated.
+const (
+	ProtectionManagement_RequestedState_Activate = "activate"
+	ProtectionManagement_RequestedState_Deactivate = "deactivate"
+)
+
+// UnmarshalProtectionManagement unmarshals an instance of ProtectionManagement from the specified map of raw messages.
+func UnmarshalProtectionManagement(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(ProtectionManagement)
+	err = core.UnmarshalPrimitive(m, "requested_state", &obj.RequestedState)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "protection_management_token", &obj.ProtectionManagementToken)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// ProtectionManagementResponse : Data structure holding protection management response.
+type ProtectionManagementResponse struct {
+	// Indicates the X number of protection management tokens that have been applied to the bucket in its lifetime.
+	TokenAppliedCounter *string `json:"token_applied_counter,omitempty"`
+
+	// The 'protection management token list' holding a recent list of applied tokens. This list may contain a subset of
+	// all tokens applied to the bucket, as indicated by the counter.
+	TokenEntries []ProtectionManagementResponseTokenEntry `json:"token_entries,omitempty"`
+}
+
+// UnmarshalProtectionManagementResponse unmarshals an instance of ProtectionManagementResponse from the specified map of raw messages.
+func UnmarshalProtectionManagementResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(ProtectionManagementResponse)
+	err = core.UnmarshalPrimitive(m, "token_applied_counter", &obj.TokenAppliedCounter)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "token_entries", &obj.TokenEntries, UnmarshalProtectionManagementResponseTokenEntry)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// ProtectionManagementResponseTokenEntry : Data structure holding protection management token.
+type ProtectionManagementResponseTokenEntry struct {
+	TokenID *string `json:"token_id,omitempty"`
+
+	TokenExpirationTime *string `json:"token_expiration_time,omitempty"`
+
+	TokenReferenceID *string `json:"token_reference_id,omitempty"`
+
+	AppliedTime *string `json:"applied_time,omitempty"`
+
+	InvalidatedTime *string `json:"invalidated_time,omitempty"`
+
+	ExpirationTime *string `json:"expiration_time,omitempty"`
+
+	ShortenRetentionFlag *bool `json:"shorten_retention_flag,omitempty"`
+}
+
+// UnmarshalProtectionManagementResponseTokenEntry unmarshals an instance of ProtectionManagementResponseTokenEntry from the specified map of raw messages.
+func UnmarshalProtectionManagementResponseTokenEntry(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(ProtectionManagementResponseTokenEntry)
+	err = core.UnmarshalPrimitive(m, "token_id", &obj.TokenID)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "token_expiration_time", &obj.TokenExpirationTime)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "token_reference_id", &obj.TokenReferenceID)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "applied_time", &obj.AppliedTime)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "invalidated_time", &obj.InvalidatedTime)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "expiration_time", &obj.ExpirationTime)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "shorten_retention_flag", &obj.ShortenRetentionFlag)
 	if err != nil {
 		return
 	}

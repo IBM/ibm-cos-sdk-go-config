@@ -7,7 +7,7 @@ require (
 	github.com/IBM/ibm-cos-sdk-go v1.10.1
 	github.com/go-openapi/strfmt v0.21.10
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.30.0
+	github.com/onsi/gomega v1.31.1
 	github.com/stretchr/testify v1.8.4
 )
 
