@@ -19,6 +19,8 @@ package resourceconfigurationv1_test
 import (
 	"bytes"
 	"context"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -225,7 +227,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
+					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn", "management_events": false}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
 				}))
 			})
 			It(`Invoke GetBucketConfig successfully with retries`, func() {
@@ -279,7 +281,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn"}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
+					fmt.Fprintf(res, "%s", `{"name": "my-new-bucket", "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket", "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903", "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:xxxxxxx-6c4f-4a62-a165-696756d63903::", "time_created": "2018-03-26T16:23:36.980Z", "time_updated": "2018-10-17T19:29:10.117Z", "object_count": 764265234, "bytes_used": 28198745752445145, "noncurrent_object_count": 764265234, "noncurrent_bytes_used": 844239234, "delete_marker_count": 827201, "firewall": {"allowed_ip": ["AllowedIp"], "denied_ip": ["DeniedIp"], "allowed_network_type": ["public"]}, "activity_tracking": {"read_data_events": false, "write_data_events": false, "activity_tracker_crn": "ActivityTrackerCrn", "management_events": false}, "metrics_monitoring": {"usage_metrics_enabled": false, "request_metrics_enabled": false, "metrics_monitoring_crn": "MetricsMonitoringCrn"}, "hard_quota": 28198745752445146, "protection_management": {"token_applied_counter": "TokenAppliedCounter", "token_entries": [{"token_id": "TokenID", "token_expiration_time": "TokenExpirationTime", "token_reference_id": "TokenReferenceID", "applied_time": "AppliedTime", "invalidated_time": "InvalidatedTime", "expiration_time": "ExpirationTime", "shorten_retention_flag": true}]}}`)
 				}))
 			})
 			It(`Invoke GetBucketConfig successfully`, func() {
@@ -423,14 +425,15 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				// Construct an instance of the Firewall model
 				firewallModel := new(resourceconfigurationv1.Firewall)
 				firewallModel.AllowedIp = []string{"10.142.175.0/22", "10.198.243.79"}
-				firewallModel.DeniedIp = []string{"testString"}
-				firewallModel.AllowedNetworkType = []string{"public"}
+				// firewallModel.DeniedIp = []string{"testString"}
+				// firewallModel.AllowedNetworkType = []string{"public"}
 
 				// Construct an instance of the ActivityTracking model
 				activityTrackingModel := new(resourceconfigurationv1.ActivityTracking)
 				activityTrackingModel.ReadDataEvents = core.BoolPtr(false)
 				activityTrackingModel.WriteDataEvents = core.BoolPtr(false)
 				activityTrackingModel.ActivityTrackerCrn = core.StringPtr("testString")
+				activityTrackingModel.ManagementEvents = core.BoolPtr(false)
 
 				// Construct an instance of the MetricsMonitoring model
 				metricsMonitoringModel := new(resourceconfigurationv1.MetricsMonitoring)
@@ -476,14 +479,15 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				// Construct an instance of the Firewall model
 				firewallModel := new(resourceconfigurationv1.Firewall)
 				firewallModel.AllowedIp = []string{"10.142.175.0/22", "10.198.243.79"}
-				firewallModel.DeniedIp = []string{"testString"}
-				firewallModel.AllowedNetworkType = []string{"public"}
+				// firewallModel.DeniedIp = []string{"testString"}
+				// firewallModel.AllowedNetworkType = []string{"public"}
 
 				// Construct an instance of the ActivityTracking model
 				activityTrackingModel := new(resourceconfigurationv1.ActivityTracking)
 				activityTrackingModel.ReadDataEvents = core.BoolPtr(false)
 				activityTrackingModel.WriteDataEvents = core.BoolPtr(false)
 				activityTrackingModel.ActivityTrackerCrn = core.StringPtr("testString")
+				activityTrackingModel.ManagementEvents = core.BoolPtr(false)
 
 				// Construct an instance of the MetricsMonitoring model
 				metricsMonitoringModel := new(resourceconfigurationv1.MetricsMonitoring)
@@ -563,9 +567,113 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 			})
 		})
 	})
+	Describe(`Model unmarshaling tests`, func() {
+		It(`Invoke UnmarshalActivityTracking successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.ActivityTracking)
+			model.ReadDataEvents = core.BoolPtr(false)
+			model.WriteDataEvents = core.BoolPtr(false)
+			model.ActivityTrackerCrn = core.StringPtr("testString")
+			model.ManagementEvents = core.BoolPtr(false)
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.ActivityTracking
+			err = resourceconfigurationv1.UnmarshalActivityTracking(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+		It(`Invoke UnmarshalBucketPatch successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.BucketPatch)
+			model.Firewall = nil
+			model.ActivityTracking = nil
+			model.MetricsMonitoring = nil
+			model.HardQuota = core.Int64Ptr(int64(28198745752445146))
+			model.ProtectionManagement = nil
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.BucketPatch
+			err = resourceconfigurationv1.UnmarshalBucketPatch(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+		It(`Invoke UnmarshalFirewall successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.Firewall)
+			model.AllowedIp = []string{"testString"}
+			// model.DeniedIp = []string{"testString"}
+			// model.AllowedNetworkType = []string{"public"}
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.Firewall
+			err = resourceconfigurationv1.UnmarshalFirewall(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+		It(`Invoke UnmarshalMetricsMonitoring successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.MetricsMonitoring)
+			model.UsageMetricsEnabled = core.BoolPtr(false)
+			model.RequestMetricsEnabled = core.BoolPtr(false)
+			model.MetricsMonitoringCrn = core.StringPtr("testString")
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.MetricsMonitoring
+			err = resourceconfigurationv1.UnmarshalMetricsMonitoring(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+		It(`Invoke UnmarshalProtectionManagement successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.ProtectionManagement)
+			model.RequestedState = core.StringPtr("activate")
+			model.ProtectionManagementToken = core.StringPtr("testString")
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.ProtectionManagement
+			err = resourceconfigurationv1.UnmarshalProtectionManagement(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+	})
 	Describe(`Utility function tests`, func() {
 		It(`Invoke CreateMockByteArray() successfully`, func() {
-			mockByteArray := CreateMockByteArray("This is a test")
+			mockByteArray := CreateMockByteArray("VGhpcyBpcyBhIHRlc3Qgb2YgdGhlIGVtZXJnZW5jeSBicm9hZGNhc3Qgc3lzdGVt")
 			Expect(mockByteArray).ToNot(BeNil())
 		})
 		It(`Invoke CreateMockUUID() successfully`, func() {
@@ -591,9 +699,11 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 // Utility functions used by the generated test code
 //
 
-func CreateMockByteArray(mockData string) *[]byte {
-	ba := make([]byte, 0)
-	ba = append(ba, mockData...)
+func CreateMockByteArray(encodedString string) *[]byte {
+	ba, err := base64.StdEncoding.DecodeString(encodedString)
+	if err != nil {
+		panic(err)
+	}
 	return &ba
 }
 

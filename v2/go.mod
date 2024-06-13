@@ -3,11 +3,11 @@ module github.com/IBM/ibm-cos-sdk-go-config/v2
 go 1.19
 
 require (
-	github.com/IBM/go-sdk-core/v5 v5.17.0
+	github.com/IBM/go-sdk-core/v5 v5.17.3
 	github.com/IBM/ibm-cos-sdk-go v1.10.3
 	github.com/go-openapi/strfmt v0.23.0
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.33.0
+	github.com/onsi/gomega v1.33.1
 	github.com/stretchr/testify v1.9.0
 )
 

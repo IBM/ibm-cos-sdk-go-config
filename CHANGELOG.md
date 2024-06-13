@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 2.1.0
+
+### Content
+
+#### Features
+
+* Sysdig Event Routing and Activity Tracker Routing Support
+
+#### Defect Fixes
+
+* Update dependencies
+* Support for Golang 1.21.0 and 1.22.0
+
 ## 2.0.6
 
 ### Content
