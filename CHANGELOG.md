@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 2.2.0
+
+### Content
+
+#### Features
+
+* Bucket Backup Support([Limited Availability](./README.md#note))
+
+#### Defect Fixes
+
+* Update dependencies
+* Support for Golang 1.23.0
+
 ## 2.1.1
 
 ### Content

@@ -1,5 +1,8 @@
 # IBM COS Resource Configuration SDK for Go
 
+**Note:**
+The feature Bucket Backup is a Limited Availability (LA) offering in the present release and is currently not "Generally Available" (GA). For more details or questions about products, sales, or support see [IBM HELP](https://www.ibm.com/contact/global)
+
 This package allows Go developers to write software that interacts with the Resource Configuration API for [IBM
 Cloud Object Storage](https://cloud.ibm.com/apidocs/cos/cos-configuration).
 
@@ -17,7 +20,7 @@ You'll need:
 
 * An instance of COS.
 * An API key from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/docs/iam/users_roles.html).
-* Minimum version of Go 1.20.
+* Minimum version of Go 1.21.
 
 ## Getting the SDK
 
