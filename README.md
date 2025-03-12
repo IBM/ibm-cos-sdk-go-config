@@ -20,7 +20,7 @@ You'll need:
 
 * An instance of COS.
 * An API key from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/docs/iam/users_roles.html).
-* Minimum version of Go 1.21.
+* Minimum version of Go 1.23.
 
 ## Getting the SDK
 

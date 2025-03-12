@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2.2.2
+
+### Content
+
+#### Defect Fixes
+
+* Internal fixes and improvements
+* Support for Golang 1.24.0
+
 ## 2.2.1
 
 ### Content
