@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -187,9 +187,14 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(resourceConfigurationService).ToNot(BeNil())
 
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				createBackupPolicyOptionsModel := new(resourceconfigurationv1.CreateBackupPolicyOptions)
 				createBackupPolicyOptionsModel.Bucket = core.StringPtr("testString")
+				createBackupPolicyOptionsModel.InitialRetention = deleteAfterDaysModel
 				createBackupPolicyOptionsModel.PolicyName = core.StringPtr("myBackupPolicy")
 				createBackupPolicyOptionsModel.TargetBackupVaultCrn = core.StringPtr("testString")
 				createBackupPolicyOptionsModel.BackupType = core.StringPtr("continuous")
@@ -248,7 +253,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}`)
+					fmt.Fprintf(res, "%s", `{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}`)
 				}))
 			})
 			It(`Invoke CreateBackupPolicy successfully with retries`, func() {
@@ -260,9 +265,14 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(resourceConfigurationService).ToNot(BeNil())
 				resourceConfigurationService.EnableRetries(0, 0)
 
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				createBackupPolicyOptionsModel := new(resourceconfigurationv1.CreateBackupPolicyOptions)
 				createBackupPolicyOptionsModel.Bucket = core.StringPtr("testString")
+				createBackupPolicyOptionsModel.InitialRetention = deleteAfterDaysModel
 				createBackupPolicyOptionsModel.PolicyName = core.StringPtr("myBackupPolicy")
 				createBackupPolicyOptionsModel.TargetBackupVaultCrn = core.StringPtr("testString")
 				createBackupPolicyOptionsModel.BackupType = core.StringPtr("continuous")
@@ -324,7 +334,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}`)
+					fmt.Fprintf(res, "%s", `{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}`)
 				}))
 			})
 			It(`Invoke CreateBackupPolicy successfully`, func() {
@@ -341,9 +351,14 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				createBackupPolicyOptionsModel := new(resourceconfigurationv1.CreateBackupPolicyOptions)
 				createBackupPolicyOptionsModel.Bucket = core.StringPtr("testString")
+				createBackupPolicyOptionsModel.InitialRetention = deleteAfterDaysModel
 				createBackupPolicyOptionsModel.PolicyName = core.StringPtr("myBackupPolicy")
 				createBackupPolicyOptionsModel.TargetBackupVaultCrn = core.StringPtr("testString")
 				createBackupPolicyOptionsModel.BackupType = core.StringPtr("continuous")
@@ -365,9 +380,14 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(resourceConfigurationService).ToNot(BeNil())
 
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				createBackupPolicyOptionsModel := new(resourceconfigurationv1.CreateBackupPolicyOptions)
 				createBackupPolicyOptionsModel.Bucket = core.StringPtr("testString")
+				createBackupPolicyOptionsModel.InitialRetention = deleteAfterDaysModel
 				createBackupPolicyOptionsModel.PolicyName = core.StringPtr("myBackupPolicy")
 				createBackupPolicyOptionsModel.TargetBackupVaultCrn = core.StringPtr("testString")
 				createBackupPolicyOptionsModel.BackupType = core.StringPtr("continuous")
@@ -410,9 +430,14 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(resourceConfigurationService).ToNot(BeNil())
 
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				createBackupPolicyOptionsModel := new(resourceconfigurationv1.CreateBackupPolicyOptions)
 				createBackupPolicyOptionsModel.Bucket = core.StringPtr("testString")
+				createBackupPolicyOptionsModel.InitialRetention = deleteAfterDaysModel
 				createBackupPolicyOptionsModel.PolicyName = core.StringPtr("myBackupPolicy")
 				createBackupPolicyOptionsModel.TargetBackupVaultCrn = core.StringPtr("testString")
 				createBackupPolicyOptionsModel.BackupType = core.StringPtr("continuous")
@@ -494,7 +519,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"backup_policies": [{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}]}`)
+					fmt.Fprintf(res, "%s", `{"backup_policies": [{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}]}`)
 				}))
 			})
 			It(`Invoke ListBackupPolicies successfully with retries`, func() {
@@ -548,7 +573,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"backup_policies": [{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}]}`)
+					fmt.Fprintf(res, "%s", `{"backup_policies": [{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}]}`)
 				}))
 			})
 			It(`Invoke ListBackupPolicies successfully`, func() {
@@ -707,7 +732,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}`)
+					fmt.Fprintf(res, "%s", `{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}`)
 				}))
 			})
 			It(`Invoke GetBackupPolicy successfully with retries`, func() {
@@ -762,7 +787,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50, "error_cause": "Some error has occured that prevents backup coverge from being created."}`)
+					fmt.Fprintf(res, "%s", `{"initial_retention": {"delete_after_days": 10}, "policy_name": "myBackupPolicy", "target_backup_vault_crn": "TargetBackupVaultCrn", "backup_type": "continuous", "policy_id": "PolicyID", "policy_status": "pending", "initial_sync_progress": 50.0, "error_cause": "Some error has occurred that prevents backup coverage from being created."}`)
 				}))
 			})
 			It(`Invoke GetBackupPolicy successfully`, func() {
@@ -1336,7 +1361,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke CreateBackupVault successfully with retries`, func() {
@@ -1420,7 +1445,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke CreateBackupVault successfully`, func() {
@@ -1617,7 +1642,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke GetBackupVault successfully with retries`, func() {
@@ -1671,7 +1696,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke GetBackupVault successfully`, func() {
@@ -1866,7 +1891,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke UpdateBackupVault successfully with retries`, func() {
@@ -1955,7 +1980,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 9}`)
+					fmt.Fprintf(res, "%s", `{"activity_tracking": {"management_events": true}, "metrics_monitoring": {"usage_metrics_enabled": false}, "backup_vault_name": "BackupVaultName", "region": "Region", "sse_kp_customer_root_key_crn": "SseKpCustomerRootKeyCrn", "crn": "Crn", "service_instance_crn": "ServiceInstanceCrn", "time_created": "2019-01-01T12:00:00.000Z", "time_updated": "2019-01-01T12:00:00.000Z", "bytes_used": 0}`)
 				}))
 			})
 			It(`Invoke UpdateBackupVault successfully`, func() {
@@ -2430,8 +2455,6 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				// Construct an instance of the Firewall model
 				firewallModel := new(resourceconfigurationv1.Firewall)
 				firewallModel.AllowedIp = []string{"10.142.175.0/22", "10.198.243.79"}
-				firewallModel.DeniedIp = []string{"testString"}
-				firewallModel.AllowedNetworkType = []string{"public"}
 
 				// Construct an instance of the ActivityTracking model
 				activityTrackingModel := new(resourceconfigurationv1.ActivityTracking)
@@ -2484,8 +2507,6 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				// Construct an instance of the Firewall model
 				firewallModel := new(resourceconfigurationv1.Firewall)
 				firewallModel.AllowedIp = []string{"10.142.175.0/22", "10.198.243.79"}
-				firewallModel.DeniedIp = []string{"testString"}
-				firewallModel.AllowedNetworkType = []string{"public"}
 
 				// Construct an instance of the ActivityTracking model
 				activityTrackingModel := new(resourceconfigurationv1.ActivityTracking)
@@ -2551,6 +2572,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					Expect(req.URL.EscapedPath()).To(Equal(listRecoveryRangesPath))
 					Expect(req.Method).To(Equal("GET"))
 					Expect(req.URL.Query()["source_resource_crn"]).To(Equal([]string{"testString"}))
+					Expect(req.URL.Query()["latest"]).To(Equal([]string{"testString"}))
 					Expect(req.URL.Query()["token"]).To(Equal([]string{"testString"}))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
@@ -2569,6 +2591,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := new(resourceconfigurationv1.ListRecoveryRangesOptions)
 				listRecoveryRangesOptionsModel.BackupVaultName = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.SourceResourceCrn = core.StringPtr("testString")
+				listRecoveryRangesOptionsModel.Latest = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Token = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -2601,6 +2624,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					Expect(req.Method).To(Equal("GET"))
 
 					Expect(req.URL.Query()["source_resource_crn"]).To(Equal([]string{"testString"}))
+					Expect(req.URL.Query()["latest"]).To(Equal([]string{"testString"}))
 					Expect(req.URL.Query()["token"]).To(Equal([]string{"testString"}))
 					// Sleep a short time to support a timeout test
 					time.Sleep(100 * time.Millisecond)
@@ -2608,7 +2632,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "recovery_ranges": [{"source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "recovery_range_id": "RecoveryRangeID"}]}`)
+					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "recovery_ranges": [{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}]}`)
 				}))
 			})
 			It(`Invoke ListRecoveryRanges successfully with retries`, func() {
@@ -2624,6 +2648,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := new(resourceconfigurationv1.ListRecoveryRangesOptions)
 				listRecoveryRangesOptionsModel.BackupVaultName = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.SourceResourceCrn = core.StringPtr("testString")
+				listRecoveryRangesOptionsModel.Latest = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Token = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2662,11 +2687,12 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					Expect(req.Method).To(Equal("GET"))
 
 					Expect(req.URL.Query()["source_resource_crn"]).To(Equal([]string{"testString"}))
+					Expect(req.URL.Query()["latest"]).To(Equal([]string{"testString"}))
 					Expect(req.URL.Query()["token"]).To(Equal([]string{"testString"}))
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "recovery_ranges": [{"source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "recovery_range_id": "RecoveryRangeID"}]}`)
+					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "recovery_ranges": [{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}]}`)
 				}))
 			})
 			It(`Invoke ListRecoveryRanges successfully`, func() {
@@ -2687,6 +2713,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := new(resourceconfigurationv1.ListRecoveryRangesOptions)
 				listRecoveryRangesOptionsModel.BackupVaultName = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.SourceResourceCrn = core.StringPtr("testString")
+				listRecoveryRangesOptionsModel.Latest = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Token = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2709,6 +2736,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := new(resourceconfigurationv1.ListRecoveryRangesOptions)
 				listRecoveryRangesOptionsModel.BackupVaultName = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.SourceResourceCrn = core.StringPtr("testString")
+				listRecoveryRangesOptionsModel.Latest = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Token = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -2752,6 +2780,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := new(resourceconfigurationv1.ListRecoveryRangesOptions)
 				listRecoveryRangesOptionsModel.BackupVaultName = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.SourceResourceCrn = core.StringPtr("testString")
+				listRecoveryRangesOptionsModel.Latest = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Token = core.StringPtr("testString")
 				listRecoveryRangesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2801,9 +2830,9 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					res.WriteHeader(200)
 					requestNumber++
 					if requestNumber == 1 {
-						fmt.Fprintf(res, "%s", `{"next":{"token":"1"},"total_count":2,"recovery_ranges":[{"source_resource_crn":"crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name","backup_policy_name":"myBackupPolicy","range_start_time":"2019-01-01T12:00:00.000Z","range_end_time":"2019-01-01T12:00:00.000Z","range_create_time":"2019-01-01T12:00:00.000Z","recovery_range_id":"RecoveryRangeID"}],"limit":1}`)
+						fmt.Fprintf(res, "%s", `{"next":{"token":"1"},"total_count":2,"recovery_ranges":[{"source_resource_crn":"SourceResourceCrn","backup_policy_name":"myBackupPolicy","range_start_time":"2019-01-01T12:00:00.000Z","range_end_time":"2019-01-01T12:00:00.000Z","range_create_time":"2019-01-01T12:00:00.000Z","retention":{"delete_after_days":10},"recovery_range_id":"RecoveryRangeID"}],"limit":1}`)
 					} else if requestNumber == 2 {
-						fmt.Fprintf(res, "%s", `{"total_count":2,"recovery_ranges":[{"source_resource_crn":"crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name","backup_policy_name":"myBackupPolicy","range_start_time":"2019-01-01T12:00:00.000Z","range_end_time":"2019-01-01T12:00:00.000Z","range_create_time":"2019-01-01T12:00:00.000Z","recovery_range_id":"RecoveryRangeID"}],"limit":1}`)
+						fmt.Fprintf(res, "%s", `{"total_count":2,"recovery_ranges":[{"source_resource_crn":"SourceResourceCrn","backup_policy_name":"myBackupPolicy","range_start_time":"2019-01-01T12:00:00.000Z","range_end_time":"2019-01-01T12:00:00.000Z","range_create_time":"2019-01-01T12:00:00.000Z","retention":{"delete_after_days":10},"recovery_range_id":"RecoveryRangeID"}],"limit":1}`)
 					} else {
 						res.WriteHeader(400)
 					}
@@ -2820,6 +2849,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := &resourceconfigurationv1.ListRecoveryRangesOptions{
 					BackupVaultName:   core.StringPtr("testString"),
 					SourceResourceCrn: core.StringPtr("testString"),
+					Latest:            core.StringPtr("testString"),
 				}
 
 				pager, err := resourceConfigurationService.NewRecoveryRangesPager(listRecoveryRangesOptionsModel)
@@ -2846,6 +2876,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := &resourceconfigurationv1.ListRecoveryRangesOptions{
 					BackupVaultName:   core.StringPtr("testString"),
 					SourceResourceCrn: core.StringPtr("testString"),
+					Latest:            core.StringPtr("testString"),
 				}
 
 				pager, err := resourceConfigurationService.NewRecoveryRangesPager(listRecoveryRangesOptionsModel)
@@ -2922,7 +2953,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "recovery_range_id": "RecoveryRangeID"}`)
+					fmt.Fprintf(res, "%s", `{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}`)
 				}))
 			})
 			It(`Invoke GetSourceResourceRecoveryRange successfully with retries`, func() {
@@ -2977,7 +3008,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "recovery_range_id": "RecoveryRangeID"}`)
+					fmt.Fprintf(res, "%s", `{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}`)
 				}))
 			})
 			It(`Invoke GetSourceResourceRecoveryRange successfully`, func() {
@@ -3076,6 +3107,310 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 			})
 		})
 	})
+	Describe(`PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptions *PatchSourceResourceRecoveryRangeOptions) - Operation response error`, func() {
+		patchSourceResourceRecoveryRangePath := "/backup_vaults/testString/recovery_ranges/testString"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(patchSourceResourceRecoveryRangePath))
+					Expect(req.Method).To(Equal("PATCH"))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprint(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke PatchSourceResourceRecoveryRange with error: Operation response processing error`, func() {
+				resourceConfigurationService, serviceErr := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(resourceConfigurationService).ToNot(BeNil())
+
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+				// Construct an instance of the RecoveryRangePatch model
+				recoveryRangePatchModel := new(resourceconfigurationv1.RecoveryRangePatch)
+				recoveryRangePatchModel.Retention = deleteAfterDaysModel
+				recoveryRangePatchModelAsPatch, asPatchErr := recoveryRangePatchModel.AsPatch()
+				Expect(asPatchErr).To(BeNil())
+
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				patchSourceResourceRecoveryRangeOptionsModel := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch = recoveryRangePatchModelAsPatch
+				patchSourceResourceRecoveryRangeOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				resourceConfigurationService.EnableRetries(0, 0)
+				result, response, operationErr = resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
+	Describe(`PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptions *PatchSourceResourceRecoveryRangeOptions)`, func() {
+		patchSourceResourceRecoveryRangePath := "/backup_vaults/testString/recovery_ranges/testString"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(patchSourceResourceRecoveryRangePath))
+					Expect(req.Method).To(Equal("PATCH"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}`)
+				}))
+			})
+			It(`Invoke PatchSourceResourceRecoveryRange successfully with retries`, func() {
+				resourceConfigurationService, serviceErr := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(resourceConfigurationService).ToNot(BeNil())
+				resourceConfigurationService.EnableRetries(0, 0)
+
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+				// Construct an instance of the RecoveryRangePatch model
+				recoveryRangePatchModel := new(resourceconfigurationv1.RecoveryRangePatch)
+				recoveryRangePatchModel.Retention = deleteAfterDaysModel
+				recoveryRangePatchModelAsPatch, asPatchErr := recoveryRangePatchModel.AsPatch()
+				Expect(asPatchErr).To(BeNil())
+
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				patchSourceResourceRecoveryRangeOptionsModel := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch = recoveryRangePatchModelAsPatch
+				patchSourceResourceRecoveryRangeOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRangeWithContext(ctx, patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				resourceConfigurationService.DisableRetries()
+				result, response, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = resourceConfigurationService.PatchSourceResourceRecoveryRangeWithContext(ctx, patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(patchSourceResourceRecoveryRangePath))
+					Expect(req.Method).To(Equal("PATCH"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"source_resource_crn": "SourceResourceCrn", "backup_policy_name": "myBackupPolicy", "range_start_time": "2019-01-01T12:00:00.000Z", "range_end_time": "2019-01-01T12:00:00.000Z", "range_create_time": "2019-01-01T12:00:00.000Z", "retention": {"delete_after_days": 10}, "recovery_range_id": "RecoveryRangeID"}`)
+				}))
+			})
+			It(`Invoke PatchSourceResourceRecoveryRange successfully`, func() {
+				resourceConfigurationService, serviceErr := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(resourceConfigurationService).ToNot(BeNil())
+
+				// Invoke operation with nil options model (negative test)
+				result, response, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRange(nil)
+				Expect(operationErr).NotTo(BeNil())
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+				// Construct an instance of the RecoveryRangePatch model
+				recoveryRangePatchModel := new(resourceconfigurationv1.RecoveryRangePatch)
+				recoveryRangePatchModel.Retention = deleteAfterDaysModel
+				recoveryRangePatchModelAsPatch, asPatchErr := recoveryRangePatchModel.AsPatch()
+				Expect(asPatchErr).To(BeNil())
+
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				patchSourceResourceRecoveryRangeOptionsModel := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch = recoveryRangePatchModelAsPatch
+				patchSourceResourceRecoveryRangeOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with valid options model (positive test)
+				result, response, operationErr = resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+			})
+			It(`Invoke PatchSourceResourceRecoveryRange with error: Operation validation and request error`, func() {
+				resourceConfigurationService, serviceErr := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(resourceConfigurationService).ToNot(BeNil())
+
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+				// Construct an instance of the RecoveryRangePatch model
+				recoveryRangePatchModel := new(resourceconfigurationv1.RecoveryRangePatch)
+				recoveryRangePatchModel.Retention = deleteAfterDaysModel
+				recoveryRangePatchModelAsPatch, asPatchErr := recoveryRangePatchModel.AsPatch()
+				Expect(asPatchErr).To(BeNil())
+
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				patchSourceResourceRecoveryRangeOptionsModel := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch = recoveryRangePatchModelAsPatch
+				patchSourceResourceRecoveryRangeOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Invoke operation with empty URL (negative test)
+				err := resourceConfigurationService.SetServiceURL("")
+				Expect(err).To(BeNil())
+				result, response, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the PatchSourceResourceRecoveryRangeOptions model with no property values
+				patchSourceResourceRecoveryRangeOptionsModelNew := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke PatchSourceResourceRecoveryRange successfully`, func() {
+				resourceConfigurationService, serviceErr := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(resourceConfigurationService).ToNot(BeNil())
+
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+				// Construct an instance of the RecoveryRangePatch model
+				recoveryRangePatchModel := new(resourceconfigurationv1.RecoveryRangePatch)
+				recoveryRangePatchModel.Retention = deleteAfterDaysModel
+				recoveryRangePatchModelAsPatch, asPatchErr := recoveryRangePatchModel.AsPatch()
+				Expect(asPatchErr).To(BeNil())
+
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				patchSourceResourceRecoveryRangeOptionsModel := new(resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions)
+				patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID = core.StringPtr("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch = recoveryRangePatchModelAsPatch
+				patchSourceResourceRecoveryRangeOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := resourceConfigurationService.PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`CreateRestore(createRestoreOptions *CreateRestoreOptions) - Operation response error`, func() {
 		createRestorePath := "/backup_vaults/testString/restores"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
@@ -3158,7 +3493,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
+					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
 				}))
 			})
 			It(`Invoke CreateRestore successfully with retries`, func() {
@@ -3232,7 +3567,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
+					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
 				}))
 			})
 			It(`Invoke CreateRestore successfully`, func() {
@@ -3405,7 +3740,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "restores": [{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}]}`)
+					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "restores": [{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}]}`)
 				}))
 			})
 			It(`Invoke ListRestores successfully with retries`, func() {
@@ -3461,7 +3796,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "restores": [{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}]}`)
+					fmt.Fprintf(res, "%s", `{"next": {"href": "Href", "token": "Token"}, "restores": [{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}]}`)
 				}))
 			})
 			It(`Invoke ListRestores successfully`, func() {
@@ -3593,9 +3928,9 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					res.WriteHeader(200)
 					requestNumber++
 					if requestNumber == 1 {
-						fmt.Fprintf(res, "%s", `{"next":{"token":"1"},"total_count":2,"limit":1,"restores":[{"recovery_range_id":"RecoveryRangeID","restore_type":"in_place","restore_point_in_time":"2019-01-01T12:00:00.000Z","target_resource_crn":"TargetResourceCrn","source_resource_crn":"crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name","restore_id":"RestoreID","restore_status":"initializing","init_time":"2019-01-01T12:00:00.000Z","complete_time":"2019-01-01T12:00:00.000Z","restore_percent_progress":1,"error_cause":"ErrorCause"}]}`)
+						fmt.Fprintf(res, "%s", `{"next":{"token":"1"},"total_count":2,"limit":1,"restores":[{"recovery_range_id":"RecoveryRangeID","restore_type":"in_place","restore_point_in_time":"2019-01-01T12:00:00.000Z","target_resource_crn":"TargetResourceCrn","source_resource_crn":"SourceResourceCrn","restore_id":"RestoreID","restore_status":"initializing","init_time":"2019-01-01T12:00:00.000Z","complete_time":"2019-01-01T12:00:00.000Z","restore_percent_progress":1,"error_cause":"ErrorCause"}]}`)
 					} else if requestNumber == 2 {
-						fmt.Fprintf(res, "%s", `{"total_count":2,"limit":1,"restores":[{"recovery_range_id":"RecoveryRangeID","restore_type":"in_place","restore_point_in_time":"2019-01-01T12:00:00.000Z","target_resource_crn":"TargetResourceCrn","source_resource_crn":"crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name","restore_id":"RestoreID","restore_status":"initializing","init_time":"2019-01-01T12:00:00.000Z","complete_time":"2019-01-01T12:00:00.000Z","restore_percent_progress":1,"error_cause":"ErrorCause"}]}`)
+						fmt.Fprintf(res, "%s", `{"total_count":2,"limit":1,"restores":[{"recovery_range_id":"RecoveryRangeID","restore_type":"in_place","restore_point_in_time":"2019-01-01T12:00:00.000Z","target_resource_crn":"TargetResourceCrn","source_resource_crn":"SourceResourceCrn","restore_id":"RestoreID","restore_status":"initializing","init_time":"2019-01-01T12:00:00.000Z","complete_time":"2019-01-01T12:00:00.000Z","restore_percent_progress":1,"error_cause":"ErrorCause"}]}`)
 					} else {
 						res.WriteHeader(400)
 					}
@@ -3712,7 +4047,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
+					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
 				}))
 			})
 			It(`Invoke GetRestore successfully with retries`, func() {
@@ -3767,7 +4102,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:bucket:bucket-name", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
+					fmt.Fprintf(res, "%s", `{"recovery_range_id": "RecoveryRangeID", "restore_type": "in_place", "restore_point_in_time": "2019-01-01T12:00:00.000Z", "target_resource_crn": "TargetResourceCrn", "source_resource_crn": "SourceResourceCrn", "restore_id": "RestoreID", "restore_status": "initializing", "init_time": "2019-01-01T12:00:00.000Z", "complete_time": "2019-01-01T12:00:00.000Z", "restore_percent_progress": 1, "error_cause": "ErrorCause"}`)
 				}))
 			})
 			It(`Invoke GetRestore successfully`, func() {
@@ -3873,13 +4208,21 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Authenticator: &core.NoAuthAuthenticator{},
 			})
 			It(`Invoke NewCreateBackupPolicyOptions successfully`, func() {
+				// Construct an instance of the DeleteAfterDays model
+				deleteAfterDaysModel := new(resourceconfigurationv1.DeleteAfterDays)
+				Expect(deleteAfterDaysModel).ToNot(BeNil())
+				deleteAfterDaysModel.DeleteAfterDays = core.Int64Ptr(int64(10))
+				Expect(deleteAfterDaysModel.DeleteAfterDays).To(Equal(core.Int64Ptr(int64(10))))
+
 				// Construct an instance of the CreateBackupPolicyOptions model
 				bucket := "testString"
+				var createBackupPolicyOptionsInitialRetention *resourceconfigurationv1.DeleteAfterDays = nil
 				createBackupPolicyOptionsPolicyName := "myBackupPolicy"
 				createBackupPolicyOptionsTargetBackupVaultCrn := "testString"
 				createBackupPolicyOptionsBackupType := "continuous"
-				createBackupPolicyOptionsModel := resourceConfigurationService.NewCreateBackupPolicyOptions(bucket, createBackupPolicyOptionsPolicyName, createBackupPolicyOptionsTargetBackupVaultCrn, createBackupPolicyOptionsBackupType)
+				createBackupPolicyOptionsModel := resourceConfigurationService.NewCreateBackupPolicyOptions(bucket, createBackupPolicyOptionsInitialRetention, createBackupPolicyOptionsPolicyName, createBackupPolicyOptionsTargetBackupVaultCrn, createBackupPolicyOptionsBackupType)
 				createBackupPolicyOptionsModel.SetBucket("testString")
+				createBackupPolicyOptionsModel.SetInitialRetention(deleteAfterDaysModel)
 				createBackupPolicyOptionsModel.SetPolicyName("myBackupPolicy")
 				createBackupPolicyOptionsModel.SetTargetBackupVaultCrn("testString")
 				createBackupPolicyOptionsModel.SetBackupType("continuous")
@@ -3887,6 +4230,7 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				createBackupPolicyOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(createBackupPolicyOptionsModel).ToNot(BeNil())
 				Expect(createBackupPolicyOptionsModel.Bucket).To(Equal(core.StringPtr("testString")))
+				Expect(createBackupPolicyOptionsModel.InitialRetention).To(Equal(deleteAfterDaysModel))
 				Expect(createBackupPolicyOptionsModel.PolicyName).To(Equal(core.StringPtr("myBackupPolicy")))
 				Expect(createBackupPolicyOptionsModel.TargetBackupVaultCrn).To(Equal(core.StringPtr("testString")))
 				Expect(createBackupPolicyOptionsModel.BackupType).To(Equal(core.StringPtr("continuous")))
@@ -4059,11 +4403,13 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				listRecoveryRangesOptionsModel := resourceConfigurationService.NewListRecoveryRangesOptions(backupVaultName)
 				listRecoveryRangesOptionsModel.SetBackupVaultName("testString")
 				listRecoveryRangesOptionsModel.SetSourceResourceCrn("testString")
+				listRecoveryRangesOptionsModel.SetLatest("testString")
 				listRecoveryRangesOptionsModel.SetToken("testString")
 				listRecoveryRangesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listRecoveryRangesOptionsModel).ToNot(BeNil())
 				Expect(listRecoveryRangesOptionsModel.BackupVaultName).To(Equal(core.StringPtr("testString")))
 				Expect(listRecoveryRangesOptionsModel.SourceResourceCrn).To(Equal(core.StringPtr("testString")))
+				Expect(listRecoveryRangesOptionsModel.Latest).To(Equal(core.StringPtr("testString")))
 				Expect(listRecoveryRangesOptionsModel.Token).To(Equal(core.StringPtr("testString")))
 				Expect(listRecoveryRangesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -4078,6 +4424,22 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 				Expect(listRestoresOptionsModel.BackupVaultName).To(Equal(core.StringPtr("testString")))
 				Expect(listRestoresOptionsModel.Token).To(Equal(core.StringPtr("testString")))
 				Expect(listRestoresOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+			})
+			It(`Invoke NewPatchSourceResourceRecoveryRangeOptions successfully`, func() {
+				// Construct an instance of the PatchSourceResourceRecoveryRangeOptions model
+				backupVaultName := "testString"
+				recoveryRangeID := "testString"
+				recoveryRangePatch := map[string]interface{}{"anyKey": "anyValue"}
+				patchSourceResourceRecoveryRangeOptionsModel := resourceConfigurationService.NewPatchSourceResourceRecoveryRangeOptions(backupVaultName, recoveryRangeID, recoveryRangePatch)
+				patchSourceResourceRecoveryRangeOptionsModel.SetBackupVaultName("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.SetRecoveryRangeID("testString")
+				patchSourceResourceRecoveryRangeOptionsModel.SetRecoveryRangePatch(map[string]interface{}{"anyKey": "anyValue"})
+				patchSourceResourceRecoveryRangeOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(patchSourceResourceRecoveryRangeOptionsModel).ToNot(BeNil())
+				Expect(patchSourceResourceRecoveryRangeOptionsModel.BackupVaultName).To(Equal(core.StringPtr("testString")))
+				Expect(patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangeID).To(Equal(core.StringPtr("testString")))
+				Expect(patchSourceResourceRecoveryRangeOptionsModel.RecoveryRangePatch).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
+				Expect(patchSourceResourceRecoveryRangeOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateBackupVaultOptions successfully`, func() {
 				// Construct an instance of the UpdateBackupVaultOptions model
@@ -4209,12 +4571,28 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 			Expect(result).ToNot(BeNil())
 			Expect(result).To(Equal(model))
 		})
+		It(`Invoke UnmarshalDeleteAfterDays successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.DeleteAfterDays)
+			model.DeleteAfterDays = core.Int64Ptr(int64(10))
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.DeleteAfterDays
+			err = resourceconfigurationv1.UnmarshalDeleteAfterDays(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
 		It(`Invoke UnmarshalFirewall successfully`, func() {
 			// Construct an instance of the model.
 			model := new(resourceconfigurationv1.Firewall)
 			model.AllowedIp = []string{"testString"}
-			model.DeniedIp = []string{"testString"}
-			model.AllowedNetworkType = []string{"public"}
 
 			b, err := json.Marshal(model)
 			Expect(err).To(BeNil())
@@ -4264,6 +4642,24 @@ var _ = Describe(`ResourceConfigurationV1`, func() {
 
 			var result *resourceconfigurationv1.ProtectionManagement
 			err = resourceconfigurationv1.UnmarshalProtectionManagement(raw, &result)
+			Expect(err).To(BeNil())
+			Expect(result).ToNot(BeNil())
+			Expect(result).To(Equal(model))
+		})
+		It(`Invoke UnmarshalRecoveryRangePatch successfully`, func() {
+			// Construct an instance of the model.
+			model := new(resourceconfigurationv1.RecoveryRangePatch)
+			model.Retention = nil
+
+			b, err := json.Marshal(model)
+			Expect(err).To(BeNil())
+
+			var raw map[string]json.RawMessage
+			err = json.Unmarshal(b, &raw)
+			Expect(err).To(BeNil())
+
+			var result *resourceconfigurationv1.RecoveryRangePatch
+			err = resourceconfigurationv1.UnmarshalRecoveryRangePatch(raw, &result)
 			Expect(err).To(BeNil())
 			Expect(result).ToNot(BeNil())
 			Expect(result).To(Equal(model))

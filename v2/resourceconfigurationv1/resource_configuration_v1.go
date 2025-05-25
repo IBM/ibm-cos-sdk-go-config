@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.96.1-5136e54a-20241108-203028
+ * IBM OpenAPI SDK Code Generator Version: 3.98.0-8be2046a-20241205-162752
  */
 
 // Package resourceconfigurationv1 : Operations and models for the ResourceConfigurationV1 service
@@ -185,9 +185,7 @@ func (resourceConfiguration *ResourceConfigurationV1) DisableRetries() {
 //   * the Backup Vault must exist and be able to be contacted by the source-bucket
 //   * the source-bucket must not have an existing BackupPolicy targeting the Backup Vault
 //   * the source-bucket must not have a BackupPolicy with the same policy_name
-//   * the source-bucket must have fewer than 3 total BackupPolicies
-//
-// This request generates the "cloud-object-storage.bucket-backup-policy.create" ActivityTracking event.
+//   * the source-bucket must have fewer than 3 total BackupPolicies.
 func (resourceConfiguration *ResourceConfigurationV1) CreateBackupPolicy(createBackupPolicyOptions *CreateBackupPolicyOptions) (result *BackupPolicy, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.CreateBackupPolicyWithContext(context.Background(), createBackupPolicyOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -235,6 +233,9 @@ func (resourceConfiguration *ResourceConfigurationV1) CreateBackupPolicyWithCont
 	}
 
 	body := make(map[string]interface{})
+	if createBackupPolicyOptions.InitialRetention != nil {
+		body["initial_retention"] = createBackupPolicyOptions.InitialRetention
+	}
 	if createBackupPolicyOptions.PolicyName != nil {
 		body["policy_name"] = createBackupPolicyOptions.PolicyName
 	}
@@ -352,8 +353,6 @@ func (resourceConfiguration *ResourceConfigurationV1) ListBackupPoliciesWithCont
 // Read a specific backup policy on a bucket.
 //
 // Requires that the user has `cloud-object-storage.bucket.get_backup_policy` permissions on the bucket.
-//
-// This request generates the "cloud-object-storage.bucket-backup-policy.read" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) GetBackupPolicy(getBackupPolicyOptions *GetBackupPolicyOptions) (result *BackupPolicy, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.GetBackupPolicyWithContext(context.Background(), getBackupPolicyOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -426,8 +425,6 @@ func (resourceConfiguration *ResourceConfigurationV1) GetBackupPolicyWithContext
 // Delete a specific BackupPolicy.
 //
 // Requires that the user has `cloud-object-storage.bucket.delete_backup_policy` permissions on the bucket.
-//
-// This request generates the "cloud-object-storage.bucket-backup-policy.delete" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) DeleteBackupPolicy(deleteBackupPolicyOptions *DeleteBackupPolicyOptions) (response *core.DetailedResponse, err error) {
 	response, err = resourceConfiguration.DeleteBackupPolicyWithContext(context.Background(), deleteBackupPolicyOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -491,8 +488,6 @@ func (resourceConfiguration *ResourceConfigurationV1) DeleteBackupPolicyWithCont
 //
 // Requires that the user has `cloud-object-storage.backup_vault.list_account_backup_vaults` permissions for the
 // account.
-//
-// This request generates the "cloud-object-storage.backup-vault.list" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) ListBackupVaults(listBackupVaultsOptions *ListBackupVaultsOptions) (result *BackupVaultCollection, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.ListBackupVaultsWithContext(context.Background(), listBackupVaultsOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -568,9 +563,7 @@ func (resourceConfiguration *ResourceConfigurationV1) ListBackupVaultsWithContex
 //
 // Certain fields will be returned only if the user has specific permissions:
 //   - `activity_tracking` requires `cloud-object-storage.backup_vault.put_activity_tracking`
-//   - `metrics_monitoring` requires `cloud-object-storage.backup_vault.put_metrics_monitoring`
-//
-// This request generates the "cloud-object-storage.backup-vault.create" ActivityTracking event.
+//   - `metrics_monitoring` requires `cloud-object-storage.backup_vault.put_metrics_monitoring`.
 func (resourceConfiguration *ResourceConfigurationV1) CreateBackupVault(createBackupVaultOptions *CreateBackupVaultOptions) (result *BackupVault, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.CreateBackupVaultWithContext(context.Background(), createBackupVaultOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -667,9 +660,7 @@ func (resourceConfiguration *ResourceConfigurationV1) CreateBackupVaultWithConte
 // Certain fields will be returned only if the user has specific permissions:
 //   - `activity_tracking` requires `cloud-object-storage.backup_vault.get_activity_tracking`
 //   - `metrics_monitoring` requires `cloud-object-storage.backup_vault.get_metrics_monitoring`
-//   - `sse_kp_customer_root_key_crn` requires `cloud-object-storage.backup_vault.get_crk_id`
-//
-// This request generates the "cloud-object-storage.backup-vault-configuration.read" ActivityTracking event.
+//   - `sse_kp_customer_root_key_crn` requires `cloud-object-storage.backup_vault.get_crk_id`.
 func (resourceConfiguration *ResourceConfigurationV1) GetBackupVault(getBackupVaultOptions *GetBackupVaultOptions) (result *BackupVault, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.GetBackupVaultWithContext(context.Background(), getBackupVaultOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -743,13 +734,9 @@ func (resourceConfiguration *ResourceConfigurationV1) GetBackupVaultWithContext(
 // In particular, note that providing an empty object (`{}`) to either field in the request body will remove any
 // existing configuration.
 //
-// Requires that the user has `cloud-object-storage.backup_vault.get_basic` permissions on the backup vault.
-//
-// Certain fields can be modified only if the user has specific permissions:
+// Requires that the user have specific permissions depending on what is being changed:
 //   - `activity_tracking` requires `cloud-object-storage.backup_vault.put_activity_tracking`
-//   - `metrics_monitoring` requires `cloud-object-storage.backup_vault.put_metrics_monitoring`
-//
-// This request generates the "cloud-object-storage.backup-vault-configuration.update" ActivityTracking event.
+//   - `metrics_monitoring` requires `cloud-object-storage.backup_vault.put_metrics_monitoring`.
 func (resourceConfiguration *ResourceConfigurationV1) UpdateBackupVault(updateBackupVaultOptions *UpdateBackupVaultOptions) (result *BackupVault, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.UpdateBackupVaultWithContext(context.Background(), updateBackupVaultOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -832,8 +819,6 @@ func (resourceConfiguration *ResourceConfigurationV1) UpdateBackupVaultWithConte
 //
 // Requires that the BackupVault not contain any RecoveryRanges.  Requires that the user has
 // `cloud-object-storage.backup_vault.delete_backup_vault` permissions for the account.
-//
-// This request generates the "cloud-object-storage.backup-vault.delete" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) DeleteBackupVault(deleteBackupVaultOptions *DeleteBackupVaultOptions) (response *core.DetailedResponse, err error) {
 	response, err = resourceConfiguration.DeleteBackupVaultWithContext(context.Background(), deleteBackupVaultOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1040,10 +1025,7 @@ func (resourceConfiguration *ResourceConfigurationV1) UpdateBucketConfigWithCont
 // List RecoveryRanges on a backup vault. Lists all available ranges for all source resources by default. The
 // `?source_resource_crn` query parameter will limit the list to only ranges for the specified resource.
 //
-//
 // Requires the user have `cloud-object-storage.backup_vault.list_recovery_ranges` permissions to the Backup Vault.
-//
-// This request generates the "cloud-object-storage.backup-recovery-range.list" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) ListRecoveryRanges(listRecoveryRangesOptions *ListRecoveryRangesOptions) (result *RecoveryRangeCollection, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.ListRecoveryRangesWithContext(context.Background(), listRecoveryRangesOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1089,6 +1071,9 @@ func (resourceConfiguration *ResourceConfigurationV1) ListRecoveryRangesWithCont
 	if listRecoveryRangesOptions.SourceResourceCrn != nil {
 		builder.AddQuery("source_resource_crn", fmt.Sprint(*listRecoveryRangesOptions.SourceResourceCrn))
 	}
+	if listRecoveryRangesOptions.Latest != nil {
+		builder.AddQuery("latest", fmt.Sprint(*listRecoveryRangesOptions.Latest))
+	}
 	if listRecoveryRangesOptions.Token != nil {
 		builder.AddQuery("token", fmt.Sprint(*listRecoveryRangesOptions.Token))
 	}
@@ -1122,8 +1107,6 @@ func (resourceConfiguration *ResourceConfigurationV1) ListRecoveryRangesWithCont
 // Get info for a specific RecoveryRange.
 //
 // Requires the user have `cloud-object-storage.backup_vault.get_recovery_range` permissions to the Backup Vault.
-//
-// This request generates the "cloud-object-storage.backup-recovery-range.read" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) GetSourceResourceRecoveryRange(getSourceResourceRecoveryRangeOptions *GetSourceResourceRecoveryRangeOptions) (result *RecoveryRange, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.GetSourceResourceRecoveryRangeWithContext(context.Background(), getSourceResourceRecoveryRangeOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1192,6 +1175,87 @@ func (resourceConfiguration *ResourceConfigurationV1) GetSourceResourceRecoveryR
 	return
 }
 
+// PatchSourceResourceRecoveryRange : patch RecoveryRange info
+// Update a RecoveryRange via JSON-merge-patch semantics.
+//
+// Requires the user have `cloud-object-storage.backup_vault.put_retention` permissions to the Backup Vault.
+//
+// The retention.delete_after_days value may only be extended.
+func (resourceConfiguration *ResourceConfigurationV1) PatchSourceResourceRecoveryRange(patchSourceResourceRecoveryRangeOptions *PatchSourceResourceRecoveryRangeOptions) (result *RecoveryRange, response *core.DetailedResponse, err error) {
+	result, response, err = resourceConfiguration.PatchSourceResourceRecoveryRangeWithContext(context.Background(), patchSourceResourceRecoveryRangeOptions)
+	err = core.RepurposeSDKProblem(err, "")
+	return
+}
+
+// PatchSourceResourceRecoveryRangeWithContext is an alternate form of the PatchSourceResourceRecoveryRange method which supports a Context parameter
+func (resourceConfiguration *ResourceConfigurationV1) PatchSourceResourceRecoveryRangeWithContext(ctx context.Context, patchSourceResourceRecoveryRangeOptions *PatchSourceResourceRecoveryRangeOptions) (result *RecoveryRange, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(patchSourceResourceRecoveryRangeOptions, "patchSourceResourceRecoveryRangeOptions cannot be nil")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
+		return
+	}
+	err = core.ValidateStruct(patchSourceResourceRecoveryRangeOptions, "patchSourceResourceRecoveryRangeOptions")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
+		return
+	}
+
+	pathParamsMap := map[string]string{
+		"backup_vault_name": *patchSourceResourceRecoveryRangeOptions.BackupVaultName,
+		"recovery_range_id": *patchSourceResourceRecoveryRangeOptions.RecoveryRangeID,
+	}
+
+	builder := core.NewRequestBuilder(core.PATCH)
+	builder = builder.WithContext(ctx)
+	builder.EnableGzipCompression = resourceConfiguration.GetEnableGzipCompression()
+	_, err = builder.ResolveRequestURL(resourceConfiguration.Service.Options.URL, `/backup_vaults/{backup_vault_name}/recovery_ranges/{recovery_range_id}`, pathParamsMap)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "url-resolve-error", common.GetComponentInfo())
+		return
+	}
+
+	for headerName, headerValue := range patchSourceResourceRecoveryRangeOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
+
+	sdkHeaders := common.GetSdkHeaders("resource_configuration", "V1", "PatchSourceResourceRecoveryRange")
+	for headerName, headerValue := range sdkHeaders {
+		builder.AddHeader(headerName, headerValue)
+	}
+	builder.AddHeader("Accept", "application/json")
+	builder.AddHeader("Content-Type", "application/merge-patch+json")
+
+	_, err = builder.SetBodyContentJSON(patchSourceResourceRecoveryRangeOptions.RecoveryRangePatch)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "set-json-body-error", common.GetComponentInfo())
+		return
+	}
+
+	request, err := builder.Build()
+	if err != nil {
+		err = core.SDKErrorf(err, "", "build-error", common.GetComponentInfo())
+		return
+	}
+
+	var rawResponse map[string]json.RawMessage
+	response, err = resourceConfiguration.Service.Request(request, &rawResponse)
+	if err != nil {
+		core.EnrichHTTPProblem(err, "patch_source_resource_recovery_range", getServiceComponentInfo())
+		err = core.SDKErrorf(err, "", "http-request-err", common.GetComponentInfo())
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRecoveryRange)
+		if err != nil {
+			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
+			return
+		}
+		response.Result = result
+	}
+
+	return
+}
+
 // CreateRestore : Initiate a Restore
 // Initiates a restore operation against some RecoveryRange to some destination bucket.
 //
@@ -1202,9 +1266,7 @@ func (resourceConfiguration *ResourceConfigurationV1) GetSourceResourceRecoveryR
 //   * the user has `cloud-object-storage.backup-vault.post_restore` permissions on the backup-vault
 //   * the target-bucket must exist and be able to be contacted by the Backup Vault
 //   * target-bucket must have versioning-on
-//   * the Backup Vault must have `cloud-object-storage.bucket.restore_sync` permissions on the target-bucket
-//
-// This request generates the "cloud-object-storage.backup-restore.create" ActivityTracking event.
+//   * the Backup Vault must have `cloud-object-storage.bucket.restore_sync` permissions on the target-bucket.
 func (resourceConfiguration *ResourceConfigurationV1) CreateRestore(createRestoreOptions *CreateRestoreOptions) (result *Restore, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.CreateRestoreWithContext(context.Background(), createRestoreOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1296,8 +1358,6 @@ func (resourceConfiguration *ResourceConfigurationV1) CreateRestoreWithContext(c
 // List all current and complete restores.
 //
 // Requires that the user have `cloud-object-storage.backup_vault.list_restores` permission on the backup vault.
-//
-// This request generates the "cloud-object-storage.backup-restore.list" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) ListRestores(listRestoresOptions *ListRestoresOptions) (result *RestoreCollection, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.ListRestoresWithContext(context.Background(), listRestoresOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1373,8 +1433,6 @@ func (resourceConfiguration *ResourceConfigurationV1) ListRestoresWithContext(ct
 // Introspect on a specific restore.
 //
 // Requires that the user have `cloud-object-storage.backup_vault.get_restore` permission on the backup vault.
-//
-// This request generates the "cloud-object-storage.backup-restore.read" ActivityTracking event.
 func (resourceConfiguration *ResourceConfigurationV1) GetRestore(getRestoreOptions *GetRestoreOptions) (result *Restore, response *core.DetailedResponse, err error) {
 	result, response, err = resourceConfiguration.GetRestoreWithContext(context.Background(), getRestoreOptions)
 	err = core.RepurposeSDKProblem(err, "")
@@ -1517,6 +1575,9 @@ func (activityTracking *ActivityTracking) asPatch() (_patch map[string]interface
 
 // BackupPolicy : The current backup coverage for a COS Bucket.
 type BackupPolicy struct {
+	// The number of days to retain data within a RecoveryRange.
+	InitialRetention *DeleteAfterDays `json:"initial_retention" validate:"required"`
+
 	// The name granted to the policy. Validation :
 	//   * chars limited to alphanumeric, underscore, hyphen and period.
 	PolicyName *string `json:"policy_name" validate:"required"`
@@ -1537,10 +1598,8 @@ type BackupPolicy struct {
 	// some intervention to recover degraded : the policy is unhealthy failed : the policy has failed unrecoverably.
 	PolicyStatus *string `json:"policy_status" validate:"required"`
 
-	// Reports percent-doneness of init.
-	//
-	// Only present when policy_status=INITIALING.
-	InitialSyncProgress *int64 `json:"initial_sync_progress,omitempty"`
+	// Reports percent-doneness of init. Only present when policy_status=INITIALIZING/PENDING.
+	InitialSyncProgress *float64 `json:"initial_sync_progress,omitempty"`
 
 	// reports error cause. Only present when policy_status=ERROR/FAILED.
 	ErrorCause *string `json:"error_cause,omitempty"`
@@ -1570,6 +1629,11 @@ const (
 // UnmarshalBackupPolicy unmarshals an instance of BackupPolicy from the specified map of raw messages.
 func UnmarshalBackupPolicy(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(BackupPolicy)
+	err = core.UnmarshalModel(m, "initial_retention", &obj.InitialRetention, UnmarshalDeleteAfterDays)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "initial_retention-error", common.GetComponentInfo())
+		return
+	}
 	err = core.UnmarshalPrimitive(m, "policy_name", &obj.PolicyName)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "policy_name-error", common.GetComponentInfo())
@@ -1612,7 +1676,7 @@ func UnmarshalBackupPolicy(m map[string]json.RawMessage, result interface{}) (er
 // BackupPolicyCollection : A collection of backup policies.
 type BackupPolicyCollection struct {
 	// A collection of backup policies.
-	BackupPolicies []BackupPolicy `json:"backup_policies,omitempty"`
+	BackupPolicies []BackupPolicy `json:"backup_policies" validate:"required"`
 }
 
 // UnmarshalBackupPolicyCollection unmarshals an instance of BackupPolicyCollection from the specified map of raw messages.
@@ -1645,7 +1709,7 @@ type BackupVault struct {
 	// and dashes (hyphens). Bucket names must begin and end with a lowercase letter or number. Bucket names canâ€t contain
 	// consecutive dots or dashes. Bucket names that resemble IP addresses are not allowed.
 	//
-	// Bucket and BackupVault names exist in a global global namespace and therefore must be unique.
+	// Bucket and BackupVault names exist in a global namespace and therefore must be unique.
 	BackupVaultName *string `json:"backup_vault_name" validate:"required"`
 
 	// the region in which this backup-vault should be created within.
@@ -1654,7 +1718,7 @@ type BackupVault struct {
 	// The CRN for a KeyProtect root key.
 	SseKpCustomerRootKeyCrn *string `json:"sse_kp_customer_root_key_crn,omitempty"`
 
-	// CRN of the backup-vault.
+	// The CRN for a COS BackupVault.
 	Crn *string `json:"crn,omitempty"`
 
 	// A COS ServiceInstance CRN.
@@ -1666,7 +1730,8 @@ type BackupVault struct {
 	// time of last update to the backup-vault Returns "YYYY-MM-DDTHH:mm:ss.sssZ" timestamp format.
 	TimeUpdated *strfmt.DateTime `json:"time_updated,omitempty"`
 
-	// byte useage of the backup-vault. This should include all usage, including non-current versions.
+	// byte useage of the backup-vault. This should include all usage, including non-current versions. A maximum value is
+	// not defined.
 	BytesUsed *int64 `json:"bytes_used,omitempty"`
 }
 
@@ -1763,7 +1828,7 @@ type BackupVaultCollection struct {
 	Next *NextPagination `json:"next,omitempty"`
 
 	// List of Backup Vaults. If no Backup Vaults exist, this array will be empty.
-	BackupVaults []string `json:"backup_vaults,omitempty"`
+	BackupVaults []string `json:"backup_vaults" validate:"required"`
 }
 
 // UnmarshalBackupVaultCollection unmarshals an instance of BackupVaultCollection from the specified map of raw messages.
@@ -2101,6 +2166,9 @@ type CreateBackupPolicyOptions struct {
 	// Name of the COS Bucket name.
 	Bucket *string `json:"bucket" validate:"required,ne="`
 
+	// The number of days to retain data within a RecoveryRange.
+	InitialRetention *DeleteAfterDays `json:"initial_retention" validate:"required"`
+
 	// The name granted to the policy. Validation :
 	//   * chars limited to alphanumeric, underscore, hyphen and period.
 	PolicyName *string `json:"policy_name" validate:"required"`
@@ -2125,9 +2193,10 @@ const (
 )
 
 // NewCreateBackupPolicyOptions : Instantiate CreateBackupPolicyOptions
-func (*ResourceConfigurationV1) NewCreateBackupPolicyOptions(bucket string, policyName string, targetBackupVaultCrn string, backupType string) *CreateBackupPolicyOptions {
+func (*ResourceConfigurationV1) NewCreateBackupPolicyOptions(bucket string, initialRetention *DeleteAfterDays, policyName string, targetBackupVaultCrn string, backupType string) *CreateBackupPolicyOptions {
 	return &CreateBackupPolicyOptions{
 		Bucket: core.StringPtr(bucket),
+		InitialRetention: initialRetention,
 		PolicyName: core.StringPtr(policyName),
 		TargetBackupVaultCrn: core.StringPtr(targetBackupVaultCrn),
 		BackupType: core.StringPtr(backupType),
@@ -2137,6 +2206,12 @@ func (*ResourceConfigurationV1) NewCreateBackupPolicyOptions(bucket string, poli
 // SetBucket : Allow user to set Bucket
 func (_options *CreateBackupPolicyOptions) SetBucket(bucket string) *CreateBackupPolicyOptions {
 	_options.Bucket = core.StringPtr(bucket)
+	return _options
+}
+
+// SetInitialRetention : Allow user to set InitialRetention
+func (_options *CreateBackupPolicyOptions) SetInitialRetention(initialRetention *DeleteAfterDays) *CreateBackupPolicyOptions {
+	_options.InitialRetention = initialRetention
 	return _options
 }
 
@@ -2181,7 +2256,7 @@ type CreateBackupVaultOptions struct {
 	// and dashes (hyphens). Bucket names must begin and end with a lowercase letter or number. Bucket names canâ€t contain
 	// consecutive dots or dashes. Bucket names that resemble IP addresses are not allowed.
 	//
-	// Bucket and BackupVault names exist in a global global namespace and therefore must be unique.
+	// Bucket and BackupVault names exist in a global namespace and therefore must be unique.
 	BackupVaultName *string `json:"backup_vault_name" validate:"required"`
 
 	// the region in which this backup-vault should be created within.
@@ -2335,6 +2410,53 @@ func (_options *CreateRestoreOptions) SetTargetResourceCrn(targetResourceCrn str
 func (options *CreateRestoreOptions) SetHeaders(param map[string]string) *CreateRestoreOptions {
 	options.Headers = param
 	return options
+}
+
+// DeleteAfterDays : The number of days to retain data within a RecoveryRange.
+type DeleteAfterDays struct {
+	// The number of days to retain data within a RecoveryRange.
+	DeleteAfterDays *int64 `json:"delete_after_days,omitempty"`
+}
+
+// UnmarshalDeleteAfterDays unmarshals an instance of DeleteAfterDays from the specified map of raw messages.
+func UnmarshalDeleteAfterDays(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(DeleteAfterDays)
+	err = core.UnmarshalPrimitive(m, "delete_after_days", &obj.DeleteAfterDays)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "delete_after_days-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// asPatch returns a generic map representation of the DeleteAfterDays
+func (deleteAfterDays *DeleteAfterDays) asPatch() (_patch map[string]interface{}) {
+	_patch = map[string]interface{}{}
+	if !core.IsNil(deleteAfterDays.DeleteAfterDays) {
+		_patch["delete_after_days"] = deleteAfterDays.DeleteAfterDays
+	}
+
+	return
+}
+
+// DeleteAfterDaysWithIndefinite : The retention configuration for a RecoveryRange.
+type DeleteAfterDaysWithIndefinite struct {
+	// The number of days to retain data within a RecoveryRange. -1 is a special value that denotes "indefinite" retention.
+	// This value can only be set implicitly via a policy created during the LA release being upgraded to the GA release.
+	DeleteAfterDays *int64 `json:"delete_after_days,omitempty"`
+}
+
+// UnmarshalDeleteAfterDaysWithIndefinite unmarshals an instance of DeleteAfterDaysWithIndefinite from the specified map of raw messages.
+func UnmarshalDeleteAfterDaysWithIndefinite(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(DeleteAfterDaysWithIndefinite)
+	err = core.UnmarshalPrimitive(m, "delete_after_days", &obj.DeleteAfterDays)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "delete_after_days-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
 }
 
 // DeleteBackupPolicyOptions : The DeleteBackupPolicy options.
@@ -2690,6 +2812,13 @@ type ListRecoveryRangesOptions struct {
 	// matches the parameter value.
 	SourceResourceCrn *string `json:"source_resource_crn,omitempty"`
 
+	// If "true", then return only the latest RecoveryRange for each source-resource that is backed up.
+	//
+	// If "false" or not specified, then the default behavior is produced.
+	//
+	// Value is can insensative. If any value is provided other than "true" or "false" then return 400.
+	Latest *string `json:"latest,omitempty"`
+
 	// the continuation token for controlling pagination.
 	Token *string `json:"token,omitempty"`
 
@@ -2713,6 +2842,12 @@ func (_options *ListRecoveryRangesOptions) SetBackupVaultName(backupVaultName st
 // SetSourceResourceCrn : Allow user to set SourceResourceCrn
 func (_options *ListRecoveryRangesOptions) SetSourceResourceCrn(sourceResourceCrn string) *ListRecoveryRangesOptions {
 	_options.SourceResourceCrn = core.StringPtr(sourceResourceCrn)
+	return _options
+}
+
+// SetLatest : Allow user to set Latest
+func (_options *ListRecoveryRangesOptions) SetLatest(latest string) *ListRecoveryRangesOptions {
+	_options.Latest = core.StringPtr(latest)
 	return _options
 }
 
@@ -2826,7 +2961,7 @@ type NextPagination struct {
 	// A URL to the continuation of results.
 	Href *string `json:"href" validate:"required"`
 
-	// The continutation token utilized for paginated results.
+	// The continuation token utilized for paginated results.
 	Token *string `json:"token" validate:"required"`
 }
 
@@ -2845,6 +2980,54 @@ func UnmarshalNextPagination(m map[string]json.RawMessage, result interface{}) (
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
 	return
+}
+
+// PatchSourceResourceRecoveryRangeOptions : The PatchSourceResourceRecoveryRange options.
+type PatchSourceResourceRecoveryRangeOptions struct {
+	// name of BackupVault to update.
+	BackupVaultName *string `json:"backup_vault_name" validate:"required,ne="`
+
+	// ID of the RecoveryRange to update.
+	RecoveryRangeID *string `json:"recovery_range_id" validate:"required,ne="`
+
+	// The RecoveryRange configuration elements that are to be changed.
+	RecoveryRangePatch map[string]interface{} `json:"RecoveryRange_patch" validate:"required"`
+
+	// Allows users to set headers on API requests.
+	Headers map[string]string
+}
+
+// NewPatchSourceResourceRecoveryRangeOptions : Instantiate PatchSourceResourceRecoveryRangeOptions
+func (*ResourceConfigurationV1) NewPatchSourceResourceRecoveryRangeOptions(backupVaultName string, recoveryRangeID string, recoveryRangePatch map[string]interface{}) *PatchSourceResourceRecoveryRangeOptions {
+	return &PatchSourceResourceRecoveryRangeOptions{
+		BackupVaultName: core.StringPtr(backupVaultName),
+		RecoveryRangeID: core.StringPtr(recoveryRangeID),
+		RecoveryRangePatch: recoveryRangePatch,
+	}
+}
+
+// SetBackupVaultName : Allow user to set BackupVaultName
+func (_options *PatchSourceResourceRecoveryRangeOptions) SetBackupVaultName(backupVaultName string) *PatchSourceResourceRecoveryRangeOptions {
+	_options.BackupVaultName = core.StringPtr(backupVaultName)
+	return _options
+}
+
+// SetRecoveryRangeID : Allow user to set RecoveryRangeID
+func (_options *PatchSourceResourceRecoveryRangeOptions) SetRecoveryRangeID(recoveryRangeID string) *PatchSourceResourceRecoveryRangeOptions {
+	_options.RecoveryRangeID = core.StringPtr(recoveryRangeID)
+	return _options
+}
+
+// SetRecoveryRangePatch : Allow user to set RecoveryRangePatch
+func (_options *PatchSourceResourceRecoveryRangeOptions) SetRecoveryRangePatch(recoveryRangePatch map[string]interface{}) *PatchSourceResourceRecoveryRangeOptions {
+	_options.RecoveryRangePatch = recoveryRangePatch
+	return _options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *PatchSourceResourceRecoveryRangeOptions) SetHeaders(param map[string]string) *PatchSourceResourceRecoveryRangeOptions {
+	options.Headers = param
+	return options
 }
 
 // ProtectionManagement : Data structure holding protection management operations.
@@ -2982,10 +3165,14 @@ func UnmarshalProtectionManagementResponseTokenEntry(m map[string]json.RawMessag
 
 // RecoveryRange : Metadata associated with a recovery range.
 type RecoveryRange struct {
-	// The CRN of the sourceResource backed up by this RecoveryRange.
+	// The CRN for a COS Bucket.
+	//
+	// Note that Softlayer CRNs do not contain dashes within the service_instance_id, whereas regular CRNs do. Although
+	// bucket backup is not supported for softlayer accounts, this need not be enforced at the CRN parsing level.
 	SourceResourceCrn *string `json:"source_resource_crn,omitempty"`
 
-	// The name of the backupPolicy that triggered the creation of this RecoveryRange.
+	// The name granted to the policy. Validation :
+	//   * chars limited to alphanumeric, underscore, hyphen and period.
 	BackupPolicyName *string `json:"backup_policy_name,omitempty"`
 
 	// The point in time at which backup coverage of the sourceResource begins.
@@ -3003,6 +3190,9 @@ type RecoveryRange struct {
 	//
 	// NOTE : this can be before the start-time.
 	RangeCreateTime *strfmt.DateTime `json:"range_create_time,omitempty"`
+
+	// The retention configuration for a RecoveryRange.
+	Retention *DeleteAfterDaysWithIndefinite `json:"retention,omitempty"`
 
 	// A UUID that uniquely identifies a resource.
 	RecoveryRangeID *string `json:"recovery_range_id,omitempty"`
@@ -3036,6 +3226,11 @@ func UnmarshalRecoveryRange(m map[string]json.RawMessage, result interface{}) (e
 		err = core.SDKErrorf(err, "", "range_create_time-error", common.GetComponentInfo())
 		return
 	}
+	err = core.UnmarshalModel(m, "retention", &obj.Retention, UnmarshalDeleteAfterDaysWithIndefinite)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "retention-error", common.GetComponentInfo())
+		return
+	}
 	err = core.UnmarshalPrimitive(m, "recovery_range_id", &obj.RecoveryRangeID)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "recovery_range_id-error", common.GetComponentInfo())
@@ -3051,7 +3246,7 @@ type RecoveryRangeCollection struct {
 	Next *NextPagination `json:"next,omitempty"`
 
 	// A list of recovery ranges.
-	RecoveryRanges []RecoveryRange `json:"recovery_ranges,omitempty"`
+	RecoveryRanges []RecoveryRange `json:"recovery_ranges" validate:"required"`
 }
 
 // UnmarshalRecoveryRangeCollection unmarshals an instance of RecoveryRangeCollection from the specified map of raw messages.
@@ -3079,6 +3274,34 @@ func (resp *RecoveryRangeCollection) GetNextToken() (*string, error) {
 	return resp.Next.Token, nil
 }
 
+// RecoveryRangePatch : The retention configuration for a RecoveryRange.
+type RecoveryRangePatch struct {
+	// The number of days to retain data within a RecoveryRange.
+	Retention *DeleteAfterDays `json:"retention,omitempty"`
+}
+
+// UnmarshalRecoveryRangePatch unmarshals an instance of RecoveryRangePatch from the specified map of raw messages.
+func UnmarshalRecoveryRangePatch(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(RecoveryRangePatch)
+	err = core.UnmarshalModel(m, "retention", &obj.Retention, UnmarshalDeleteAfterDays)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "retention-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// AsPatch returns a generic map representation of the RecoveryRangePatch
+func (recoveryRangePatch *RecoveryRangePatch) AsPatch() (_patch map[string]interface{}, err error) {
+	_patch = map[string]interface{}{}
+	if !core.IsNil(recoveryRangePatch.Retention) {
+		_patch["retention"] = recoveryRangePatch.Retention.asPatch()
+	}
+
+	return
+}
+
 // Restore : Metadata associated with a requested restore operation.
 type Restore struct {
 	// A UUID that uniquely identifies a resource.
@@ -3101,10 +3324,13 @@ type Restore struct {
 	// bucket backup is not supported for softlayer accounts, this need not be enforced at the CRN parsing level.
 	TargetResourceCrn *string `json:"target_resource_crn" validate:"required"`
 
-	// The name of the source resource that is being restored from.
+	// The CRN for a COS Bucket.
+	//
+	// Note that Softlayer CRNs do not contain dashes within the service_instance_id, whereas regular CRNs do. Although
+	// bucket backup is not supported for softlayer accounts, this need not be enforced at the CRN parsing level.
 	SourceResourceCrn *string `json:"source_resource_crn,omitempty"`
 
-	// Unique system-defined UUID for this restore operation.
+	// A UUID that uniquely identifies a resource.
 	RestoreID *string `json:"restore_id,omitempty"`
 
 	// The current status for this restore operation.
@@ -3215,7 +3441,7 @@ type RestoreCollection struct {
 	Next *NextPagination `json:"next,omitempty"`
 
 	// A collection of active and completed restore operations.
-	Restores []Restore `json:"restores,omitempty"`
+	Restores []Restore `json:"restores" validate:"required"`
 }
 
 // UnmarshalRestoreCollection unmarshals an instance of RestoreCollection from the specified map of raw messages.

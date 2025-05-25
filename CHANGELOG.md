@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.3.0
+
+### Content
+
+#### Features
+
+* COS Bucket Backup Support
+
+#### Defect Fixes
+
+* Update dependencies
+
 ## 2.2.2
 
 ### Content
