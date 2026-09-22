@@ -1,4 +1,4 @@
-# Migration Guide - upgrading to ibm-cos-sdk-go-config@2.0.0
+# Migration Guide - upgrading to ibm-cos-sdk-go-config\@2.0.0
 
 ## Breaking Changes
 

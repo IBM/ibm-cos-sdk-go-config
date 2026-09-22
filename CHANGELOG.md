@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2.3.1
+
+### Content
+
+#### Defect Fixes
+
+* Internal fixes and improvements
+* Support for Golang 1.26.0
+
 ## 2.3.0
 
 ### Content
